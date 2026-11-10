@@ -1,0 +1,90 @@
+/*
+ * Tailwind CSS entry point.
+ *
+ * Preflight (Tailwind's global reset) is intentionally NOT imported: the pages were written
+ * against the browser's default styles plus a few small resets, and keeping those defaults is
+ * what keeps every page pixel-identical. Only the theme and the utility generator are used.
+ */
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities) source(none);
+
+/*
+ * Class names are read from the pages (src/routes), the <html>/<body> classes in lib/server/shell.js and
+ * the page scripts that write markup at run time (lib/scripts).
+ */
+@source '../../routes';
+@source '../server/shell.js';
+
+/* The pages style hover on touch devices too, so hover is not limited to (hover: hover). */
+@custom-variant hover (&:hover);
+/*
+ * Width breakpoints, written as the original stylesheets did: "lte-767:" applies at viewport widths
+ * <= 767px. (Tailwind's own max-* variants use a strict "<" comparison, which is off by one.)
+ * Declared largest first so that, as in plain CSS, the smaller breakpoint wins.
+ */
+@custom-variant lte-1439 (@media (max-width: 1439px));
+@custom-variant lte-1250 (@media (max-width: 1250px));
+@custom-variant lte-1100 (@media (max-width: 1100px));
+@custom-variant lte-1024 (@media (max-width: 1024px));
+@custom-variant lte-1023 (@media (max-width: 1023px));
+@custom-variant lte-900 (@media (max-width: 900px));
+@custom-variant lte-860 (@media (max-width: 860px));
+@custom-variant lte-767 (@media (max-width: 767px));
+@custom-variant lte-760 (@media (max-width: 760px));
+@custom-variant lte-700 (@media (max-width: 700px));
+@custom-variant lte-560 (@media (max-width: 560px));
+@custom-variant lte-520 (@media (max-width: 520px));
+@custom-variant lte-480 (@media (max-width: 480px));
+@custom-variant lte-450 (@media (max-width: 450px));
+@custom-variant lte-430 (@media (max-width: 430px));
+@custom-variant lte-390 (@media (max-width: 390px));
+
+/* Portal dark mode: portal.js toggles the dark-ui class on <body>. */
+@custom-variant dark (body.dark-ui &);
+
+@theme {
+  /* brand colours */
+  --color-primary: #0F60E8;
+  --color-navy: #07152D;
+  --color-deep-navy: #041020;
+  --color-text: #162238;
+  --color-body: #526078;
+  --color-muted: #7A8699;
+  --color-surface: #F7F9FC;
+  --color-light-blue: #EDF4FD;
+  --color-border: #E2E7EF;
+  --color-white: #FFFFFF;
+  --color-ink: #0B1220;
+  --color-paper: #FAFBFC;
+  --color-slate: #5B6472;
+  --color-slate-soft: #8891A0;
+  --color-signal: #0EA5E9;
+  --color-circuit-green: #10B981;
+  --color-hairline: #E2E8F0;
+  --color-danger: #C0392B;
+
+  /* font stacks */
+  --font-inter: Inter, Arial, sans-serif;
+  --font-ibm-plex-mono: 'IBM Plex Mono', monospace;
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
+  --font-inter-2: Inter, sans-serif;
+  --font-sfmono-regular: SFMono-Regular, Consolas, monospace;
+  --font-monospace: monospace;
+  --font-inter-arial-helvetica: Inter, Arial, Helvetica, sans-serif;
+  --font-inter-segoe-ui: Inter, 'Segoe UI', Arial, sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@keyframes fadeSlide  { 
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:none; } }
+
+@keyframes pulse  { 
+  0%,100% { opacity:1; }
+  50% { opacity:.4; } }

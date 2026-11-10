@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" class="%html.class%">
+  <head>
+    <meta charset="utf-8" />
+    %sveltekit.head%
+  </head>
+  <!--
+    data-sveltekit-reload: every link triggers a normal full page load.
+    The site is a set of separate pages (main site, CAN Vision, Contact, login, portal), exactly
+    like the original multi-page PHP/HTML site, so each navigation is a real page load.
+
+    The class attributes of <html> and <body> are filled in per route by hooks.server.js
+    (see lib/server/shell.js).
+  -->
+  <body data-sveltekit-reload class="%body.class%">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>
